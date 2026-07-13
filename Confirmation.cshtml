@@ -1,0 +1,50 @@
+@model IsintuWebsite.Models.OrderConfirmationViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Title {
+    Order Confirmed
+}
+
+<div class="confirmation-page">
+    <h1>Thank you, @Model.CustomerName!</h1>
+    <p>Your order has been placed successfully. Here's a summary:</p>
+
+    <table class="confirmation-table">
+        <tr>
+            <th>Order Number</th>
+            <td>#@Model.OrderId</td>
+        </tr>
+        <tr>
+            <th>Attire</th>
+            <td>@Model.AttireName</td>
+        </tr>
+        <tr>
+            <th>Order Type</th>
+            <td>@Model.OrderType</td>
+        </tr>
+        <tr>
+            <th>Quantity</th>
+            <td>@Model.Quantity</td>
+        </tr>
+        @if (Model.OrderType == "Rent")
+        {
+            <tr>
+                <th>Rental Period</th>
+                <td>@Model.RentalDays day(s)</td>
+            </tr>
+        }
+        <tr>
+            <th>Accessories Included</th>
+            <td>@(Model.IncludeAccessories ? "Yes" : "No")</td>
+        </tr>
+        <tr class="total-row">
+            <th>Total Amount</th>
+            <td>R@Model.TotalAmount.ToString("N2")</td>
+        </tr>
+    </table>
+
+    <a class="btn-secondary" href="@Url.Action("Index", "Attire")">Continue Shopping</a>
+</div>

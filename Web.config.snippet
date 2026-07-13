@@ -1,0 +1,25 @@
+<!--
+  Add this inside the <configuration> tag of your project's Web.config file,
+  alongside your other connection strings.
+
+  Update the Server, Database, Uid and Pwd values to match your own MySQL setup
+  before running the app.
+-->
+<connectionStrings>
+  <add name="IsintuDbContext"
+       connectionString="Server=localhost;Database=IsintuDB;Uid=root;Pwd=YOUR_PASSWORD_HERE;"
+       providerName="MySql.Data.MySqlClient" />
+</connectionStrings>
+
+<!--
+  Also make sure this sits inside <system.data> so Entity Framework knows
+  which provider to use for MySQL:
+-->
+<system.data>
+  <DbProviderFactories>
+    <remove invariant="MySql.Data.MySqlClient" />
+    <add name="MySQL Data Provider" invariant="MySql.Data.MySqlClient"
+         description=".Net Framework Data Provider for MySQL"
+         type="MySql.Data.MySqlClient.MySqlClientFactory, MySql.Data, Version=8.0.33.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
+  </DbProviderFactories>
+</system.data>
