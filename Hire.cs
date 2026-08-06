@@ -8,20 +8,13 @@ namespace IsintuWebsite.Models
     public class Hire
     {
         public int HireId { get; set; }
-
         public int OrderItemId { get; set; }
-
         public virtual OrderItem OrderItem { get; set; }
-
         public DateTime StartDate { get; set; }
-
         public DateTime ReturnDate { get; set; }
-
         public DateTime? ActualReturnDate { get; set; }
-
         [Column(TypeName = "decimal")]
         public decimal LateFeePerDay { get; set; } = 100.00m;
-
         // Works out a late fee if the attire came back after the agreed return date.
         // Returns 0 if it was returned on time or hasn't been returned yet.
         public decimal CalculateLateFee()
